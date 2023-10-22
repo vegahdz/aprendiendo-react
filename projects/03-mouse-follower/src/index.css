@@ -73,3 +73,16 @@ button:focus-visible {
 body.no-cursor {
   cursor: none;
 }
+
+
+.followBall{
+  background: #09f;
+  border-radius: 50%;
+  height: 40px;
+  left: -20px;
+  opacity: .8;
+  pointer-events: none;
+  position: absolute;
+  top: -20px;
+  width: 40px;
+}
