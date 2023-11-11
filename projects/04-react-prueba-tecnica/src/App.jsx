@@ -8,26 +8,29 @@ export function App () {
     const [fact, setFact] = useState()
     const [imageUrl, setImageUrl] = useState()
 
-
+    //recuperar la cita o hecho de gatos al cargar la pagina
     useEffect(() => {
         fetch(CAT_ENDPOINT_RANDOM_FACT)
         .then(res => res.json())
         .then(data => {
             const { fact } = data
             setFact(fact)
-
-            const threeFirstWords = fact.split(' ', 3).join(' ')
-
-            fetch(`https://cataas.com/cat/says/${threeFirstWords}?json=true`)
-                .then(res => res.json())
-                .then(response => {
-                    // console.log(response)
-                    const { _id } = response
-                    setImageUrl(`${threeFirstWords}`)
-                })
-
         })
     }, [])
+
+    //recuperar la imagen de gatos cada vez que tenemos una cita nueva
+    useEffect(() => {
+        if(!fact) return
+
+        const threeFirstWords = fact.split(' ', 3).join(' ')
+
+        fetch(`https://cataas.com/cat/says/${threeFirstWords}?json=true`)
+            .then(res => res.json())
+            .then(response => {
+                const { _id } = response
+                setImageUrl(`${threeFirstWords}`)
+            })
+    }, [fact])
 
     return (
         <main>
