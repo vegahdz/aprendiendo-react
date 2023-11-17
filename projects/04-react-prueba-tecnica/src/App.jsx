@@ -23,8 +23,6 @@ export function App () {
                 {imageUrl && <img src={imageUrl} alt={`Retrieve first 3 words in top sentence about cat facts: "${fact}"`} />}
             </section>
 
-            <Otro />
-
         </main>
     )
 }
